@@ -17,7 +17,7 @@ class AnswerButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(
-          horizontal: 40,
+          horizontal: 50,
           vertical: 10,
         ),
         backgroundColor: const Color.fromARGB(255, 141, 80, 187),
@@ -26,7 +26,10 @@ class AnswerButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(40),
         ),
       ),
-      child: Text(answerText),
+      child: Text(
+        answerText,
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }

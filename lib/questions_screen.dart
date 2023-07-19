@@ -1,9 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import 'package:quiz_app_flutter/answer_button.dart';
 import 'package:quiz_app_flutter/data/questions.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key});
+  const QuestionsScreen({
+    Key? key,
+    required this.onSelectAnswer,
+  }) : super(key: key);
+
+  final void Function(String answer) onSelectAnswer;
 
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
@@ -12,7 +20,8 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionIndex = 0;
 
-  void answerOfQuestion() {
+  void answerOfQuestion(String selectedAnswer) {
+    widget.onSelectAnswer(selectedAnswer);
     setState(() {
       // currentQuestionIndex = currentQuestionIndex + 1;
       // currentQuestionIndex += 1;
@@ -32,9 +41,10 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             Text(
               currentQuestion.question,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                //fontSize: 20,
+              style: GoogleFonts.lato(
+                color: const Color.fromARGB(255, 205, 168, 246),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(
@@ -46,7 +56,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
 
               return AnswerButton(
                 answerText: item,
-                onPressed: answerOfQuestion,
+                onPressed: () {
+                  answerOfQuestion(item);
+                },
 
                 //? Calling a function with parenthesis: When you call a function with parentheses, you are executing the function and passing any necessary arguments.
                 //? Calling a function without parenthesis: When you call a function without parentheses, you are referring to the function itself, not executing it.
