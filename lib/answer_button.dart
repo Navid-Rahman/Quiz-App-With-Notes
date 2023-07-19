@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AnswerButton extends StatelessWidget {
   const AnswerButton({
@@ -13,22 +14,40 @@ class AnswerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 50,
-          vertical: 10,
+    //* Get the screen width
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    //* Calculate 70% of the screen width
+    final buttonWidth = screenWidth * 0.8;
+
+    return SizedBox(
+      width: buttonWidth,
+      child: Padding(
+        padding: const EdgeInsets.only(
+          top: 10,
         ),
-        backgroundColor: const Color.fromARGB(255, 141, 80, 187),
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(40),
+        child: ElevatedButton(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 50,
+              vertical: 20,
+            ),
+            backgroundColor: const Color.fromARGB(255, 141, 80, 187),
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(40),
+            ),
+          ),
+          child: Text(
+            answerText,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.lato(
+              fontSize: 16,
+              color: Colors.white,
+            ),
+          ),
         ),
-      ),
-      child: Text(
-        answerText,
-        textAlign: TextAlign.center,
       ),
     );
   }

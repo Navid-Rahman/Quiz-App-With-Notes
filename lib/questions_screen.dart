@@ -35,39 +35,42 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     return SafeArea(
       child: SizedBox(
         width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              currentQuestion.question,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.lato(
-                color: const Color.fromARGB(255, 205, 168, 246),
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                currentQuestion.question,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.lato(
+                  color: const Color.fromARGB(255, 205, 168, 246),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ...currentQuestion.getShuffledAnswers().map((item) {
-              //? Map doesn't change the original lists
-              //? But Shuffle does change the original lists
+              const SizedBox(
+                height: 20,
+              ),
+              ...currentQuestion.getShuffledAnswers().map((item) {
+                //? Map doesn't change the original lists
+                //? But Shuffle does change the original lists
 
-              return AnswerButton(
-                answerText: item,
-                onPressed: () {
-                  answerOfQuestion(item);
-                },
+                return AnswerButton(
+                  answerText: item,
+                  onPressed: () {
+                    answerOfQuestion(item);
+                  },
 
-                //? Calling a function with parenthesis: When you call a function with parentheses, you are executing the function and passing any necessary arguments.
-                //? Calling a function without parenthesis: When you call a function without parentheses, you are referring to the function itself, not executing it.
-              );
+                  //? Calling a function with parenthesis: When you call a function with parentheses, you are executing the function and passing any necessary arguments.
+                  //? Calling a function without parenthesis: When you call a function without parentheses, you are referring to the function itself, not executing it.
+                );
 
-              //? ... known or called as Spreading values(...)
-              //? The values should be added as a iterals to a newer list.
-            }),
-          ],
+                //? ... known or called as Spreading values(...)
+                //? The values should be added as a iterals to a newer list.
+              }),
+            ],
+          ),
         ),
       ),
     );
