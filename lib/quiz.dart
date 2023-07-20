@@ -38,13 +38,26 @@ class _QuizState extends State<Quiz> {
     if (selectedAnswers.length == questions.length) {
       setState(() {
         selectedAnswers = [];
-        activeScreen = const ResultScreen();
+        activeScreen = ResultScreen(
+          chosenAnswers: selectedAnswers,
+        );
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    // Widget screenWidget = StartScreen(switchScreen);
+
+    // if (activeScreen == QuestionsScreen) {
+    //   screenWidget = QuestionsScreen(
+    //     onSelectAnswer: chooseAnswers,
+    //   );
+    // }
+
+    // if (activeScreen == ResultScreen) {
+    //   screenWidget = const ResultScreen();
+    // }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
