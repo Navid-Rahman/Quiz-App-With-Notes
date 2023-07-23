@@ -1,37 +1,47 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// Importing necessary libraries and packages
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:quiz_app_flutter/answer_button.dart';
 import 'package:quiz_app_flutter/data/questions.dart';
 
+// The QuestionsScreen class, which is a StatefulWidget
 class QuestionsScreen extends StatefulWidget {
+  // Constructor for the QuestionsScreen
   const QuestionsScreen({
     Key? key,
     required this.onSelectAnswer,
   }) : super(key: key);
 
+  // Callback function that will be called when an answer is selected
   final void Function(String answer) onSelectAnswer;
 
+  // Overriding the createState method to create the state for this StatefulWidget
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
 }
 
+// The state class for the QuestionsScreen
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  // Variable to keep track of the current question index
   var currentQuestionIndex = 0;
 
+  // Method to handle the selection of an answer
   void answerOfQuestion(String selectedAnswer) {
+    // Call the onSelectAnswer callback with the selected answer
     widget.onSelectAnswer(selectedAnswer);
+
+    // Update the state to move to the next question
     setState(() {
-      // currentQuestionIndex = currentQuestionIndex + 1;
-      // currentQuestionIndex += 1;
       currentQuestionIndex++;
     });
   }
 
+  // Build method to create the UI for the QuestionsScreen
   @override
   Widget build(BuildContext context) {
+    // Get the current question from the list of questions using the currentQuestionIndex
     final currentQuestion = questions[currentQuestionIndex];
+
     return SafeArea(
       child: SizedBox(
         width: double.infinity,
@@ -40,6 +50,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Widget to display the current question text
               Text(
                 currentQuestion.question,
                 textAlign: TextAlign.center,
@@ -52,23 +63,17 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               const SizedBox(
                 height: 20,
               ),
+              // Use the spread operator (...) to create a list of AnswerButton widgets for each shuffled answer
               ...currentQuestion.getShuffledAnswers().map(
                 (item) {
-                  //? Map doesn't change the original lists
-                  //? But Shuffle does change the original lists
-
+                  // Create an AnswerButton for each answer item
                   return AnswerButton(
                     answerText: item,
                     onPressed: () {
+                      // When an answer is pressed, call the answerOfQuestion method with the selected answer
                       answerOfQuestion(item);
                     },
-
-                    //? Calling a function with parenthesis: When you call a function with parentheses, you are executing the function and passing any necessary arguments.
-                    //? Calling a function without parenthesis: When you call a function without parentheses, you are referring to the function itself, not executing it.
                   );
-
-                  //? ... known or called as Spreading values(...)
-                  //? The values should be added as a iterals to a newer list.
                 },
               ),
             ],

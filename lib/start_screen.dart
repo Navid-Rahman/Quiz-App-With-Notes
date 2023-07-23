@@ -1,19 +1,23 @@
+// Importing necessary libraries and packages
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// The StartScreen class, which is a StatelessWidget
 class StartScreen extends StatelessWidget {
+  // Constructor for the StartScreen
   const StartScreen(
     this.startQuiz, {
     super.key,
   });
 
-  //! inside the bracket named-arguments, outside the bracket positional-arguments.
-
+  // Function callback to start the quiz
   final void Function() startQuiz;
 
+  // Build method to create the UI for the StartScreen
   @override
   Widget build(BuildContext context) {
     return Container(
+      // Container with a gradient background
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -28,10 +32,11 @@ class StartScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // Opacity widget to control the opacity of the image
             Opacity(
               opacity: 0.6,
 
-              //* Image asset
+              // Image asset for the quiz logo
               child: Image.asset(
                 'assets/images/quiz-logo.png',
                 width: 300,
@@ -41,7 +46,7 @@ class StartScreen extends StatelessWidget {
               height: 80,
             ),
 
-            //* Tagline
+            // Tagline text for the quiz
             Text(
               'Learn Flutter the fun way!',
               style: GoogleFonts.satisfy(
@@ -53,10 +58,10 @@ class StartScreen extends StatelessWidget {
               height: 30,
             ),
 
-            //* Submit button
+            // Submit button to start the quiz
             OutlinedButton.icon(
               onPressed: () {
-                // Todo: Add start page button functionality
+                // Call the startQuiz function when the button is pressed
                 startQuiz();
               },
               style: OutlinedButton.styleFrom(
